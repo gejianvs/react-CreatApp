@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {BrowserRouter,Switch, Route, Redirect,HashRouter} from 'react-router-dom';
-import './App.css';
 import Layout from  '../Layout'
 import Login from  '../Login'
+import ProductsList from '../ProductsList';
+
 
 class App extends Component {
     render() {
@@ -11,6 +12,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/" exact component={Layout}/>
                     <Route path="/login" exact component={Login}/>
+                    <Route path='/productsList' component={ProductsList}/>
                 </Switch>
             </HashRouter>
 

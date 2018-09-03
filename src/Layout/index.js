@@ -1,12 +1,13 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect, Link} from 'react-router-dom';
-import styles from './index.less';
-import { Button,Layout, Menu, Icon, Tabs} from 'antd';
-// import Products from '../routes/Products';
-// import Detail from '../routes/Detail';
+import {Button, Layout, Menu, Icon, Tabs} from 'antd';
+import ProductsList from '../ProductsList';
+import ProductDetail from '../ProductDetail';
+
+import './index.less';
 
 
-const {Sider, Content} = Layout;
+const {Sider, Content, Header} = Layout;
 
 
 class IndexPage extends React.Component {
@@ -20,7 +21,7 @@ class IndexPage extends React.Component {
 
 
     componentDidMount() {
-
+        console.log(this.props)
     }
 
     handleClick = (e) => {
@@ -31,46 +32,27 @@ class IndexPage extends React.Component {
     }
 
     render() {
-
+        const {url}=this.props.match
 
         return (
-            <Layout className={styles.layout}>
-                <Sider className={styles.sider}>
-                    <Menu mode="inline">
+            <Layout className='layout'>
+
+                <Sider className='sider'>
+                    <Menu>
                         <Menu.Item key="products">
-                            <Link to="/products"> <Icon type="mail"/>产品列表</Link>
+                            <Link to={`/productsList`}> <Icon type="mail"/>产品列表</Link>
                         </Menu.Item>
                         <Menu.Item key="detail">
-                            <Link to="/detail"><Icon type="appstore"/>产品详情</Link>
+                            <Link to={`/productDetail`}><Icon type="appstore"/>产品详情</Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Content>
-                    <Button type="primary">primary</Button>
-                    <Layout>
-
-                        <Menu
-                            onClick={this.handleClick}
-                            selectedKeys={[this.state.current]}
-                            mode="horizontal"
-                        >
-                            <Menu.Item key="products">
-                                <Link to="/products"> <Icon type="mail"/>产品列表</Link>
-                            </Menu.Item>
-                            <Menu.Item key="detail">
-                                <Link to="/detail"><Icon type="appstore"/>产品详情</Link>
-                            </Menu.Item>
-                        </Menu>
-                        <Content>
-                            {/*<Switch>*/}
-                            {/*<Route path={`/products`}  component={Products}/>*/}
-                            {/*<Route path={`/detail`}    component={Detail}/>*/}
-                            {/*</Switch>*/}
-
-                        </Content>
-                    </Layout>
+                    <Switch>
+                        <Route path={`/productsList`} component={ProductsList}/>
+                        <Route path={`/productDetail`} component={ProductDetail}/>
+                    </Switch>
                 </Content>
-
             </Layout>
         );
     }
