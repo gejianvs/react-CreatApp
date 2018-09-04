@@ -1,10 +1,11 @@
 import React from 'react';
 import {Form, Icon, Input, Button, Card, Table} from 'antd';
 import {connect} from 'react-redux'
-
+import  {addTodo,deliteTodo} from '../store/action'
 
 import './index.less';
 const FormItem = Form.Item;
+const Fragment=React.Fragment
 
 
 class ProductsList extends React.Component {
@@ -13,18 +14,28 @@ class ProductsList extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
+        // console.log(this.props)
     }
 
     handleSubmit = (e) => {
+        const {dispatch}=this.props
         e.preventDefault();
         const {form}=this.props
+        console.log(this.props)
         form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
+           if(err) return;
+           dispatch(addTodo(values))
+            form.resetFields()
         });
     }
+
+   delite=(key)=>{
+        console.log(key)
+        const {dispatch}=this.props
+       dispatch(deliteTodo(key))
+   }
+
+
 
     render() {
         const columns = [{
@@ -35,18 +46,16 @@ class ProductsList extends React.Component {
             title: '邮箱',
             dataIndex: 'email',
             key: 'email',
-        }]
-        const data = [{
-            key: '1',
-            name: '伟杰',
-            email: '123456@qq.com'
-        }, {
-            key: '2',
-            name: 'zhifeng',
-            email: '666666@qq.com'
+        },{
+            title:'操作',
+            render:(record)=>{
+                return(<div onClick={this.delite.bind(null,record.key)}>删除</div>)
+            }
         }]
 
+
         const { getFieldDecorator } = this.props.form;
+        const{data}=this.props
 
 
         return (
@@ -83,8 +92,15 @@ class ProductsList extends React.Component {
 const WrappedProductsList = Form.create()(ProductsList);
 
 
-// export default ProductsList;
-export default connect()(WrappedProductsList)
+const mapStateToProps = state => {
+    return {
+        data:state.reducer
+    }
+
+}
+
+
+export default connect(mapStateToProps)(WrappedProductsList)
 
 
 

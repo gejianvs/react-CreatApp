@@ -1,6 +1,7 @@
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
+
             return [
                 ...state,
                 {
@@ -9,6 +10,10 @@ const todos = (state = [], action) => {
                     email: action.email,
                 }
             ]
+        case 'DEL_TODO':
+            return state.filter(todo=>{
+                return todo.key!=action.key
+            })
         default:
             return state
     }

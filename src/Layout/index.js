@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect, Link} from 'react-router-dom';
-import {Button, Layout, Menu, Icon, Tabs} from 'antd';
+import {Button, Layout, Menu, Icon, Tabs,DatePicker} from 'antd';
 import ProductsList from '../ProductsList';
 import ProductDetail from '../ProductDetail';
 
 import './index.less';
-
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
 const {Sider, Content, Header} = Layout;
 
@@ -53,6 +53,9 @@ class IndexPage extends React.Component {
                         <Route path={`/productDetail`} component={ProductDetail}/>
                     </Switch>
                 </Content>
+
+
+                <RangePicker />
             </Layout>
         );
     }

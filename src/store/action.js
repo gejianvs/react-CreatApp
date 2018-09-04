@@ -1,8 +1,14 @@
 let key = 0
-export const addTodo = text => ({
+export const addTodo = values => ({
     type: 'ADD_TODO',
-    id: key++,
-    text
+    key: key++,
+    ...values
+})
+
+export const deliteTodo = key => ({
+    type: 'DEL_TODO',
+    key
+
 })
 
 
