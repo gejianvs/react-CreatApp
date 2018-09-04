@@ -1,3 +1,7 @@
+import {combineReducers} from 'redux';
+import {TOGGLE_GET, SUCCESS_GET, FAILED_GET} from './action';
+
+
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
@@ -20,3 +24,4 @@ const todos = (state = [], action) => {
 }
 
 export default todos
+

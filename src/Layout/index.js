@@ -45,6 +45,9 @@ class IndexPage extends React.Component {
                         <Menu.Item key="detail">
                             <Link to={`/productDetail`}><Icon type="appstore"/>产品详情</Link>
                         </Menu.Item>
+                        <Menu.Item key="async">
+                            <Link to={`/asyncAction`}><Icon type="appstore"/>异步Action</Link>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Content>
